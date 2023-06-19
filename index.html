@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuadro de texto con puntos</title>
+    <script>
+        function hideText(event) {
+            var input = document.getElementById("myInput");
+            input.value += "•";
+            event.preventDefault();
+        }
+
+        function showText() {
+            var input = document.getElementById("myInput");
+            var hiddenText = input.value.replace(/•/g, "");
+            alert("Texto oculto: " + hiddenText);
+        }
+
+        function submitForm() {
+            var input = document.getElementById("myInput");
+            input.value = input.value.replace(/•/g, "");
+            document.forms["contact"].submit();
+        }
+    </script>
+</head>
+<body>
+
+<h2>Cuadro de texto con puntos</h2>
+
+<form name="contact" method="POST" data-netlify="true" action="/index">
+    <label for="myInput">Texto oculto:</label>
+    <input type="password" id="myInput" onkeydown="hideText(event)" required>
+    <br>
+    <input type="button" value="Mostrar" onclick="showText()">
+    <input type="button" value="Enviar" onclick="submitForm()">
+</form>
+
+</body>
+</html>
